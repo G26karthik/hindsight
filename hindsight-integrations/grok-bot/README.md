@@ -66,7 +66,7 @@ the `url` in `mcp.json`.
 ## Development
 
 ```bash
-uv run pytest tests -v
+python -m pytest tests -v
 ```
 
 The tests apply the Cursor Marketplace submission checklist to the manifests, and pin

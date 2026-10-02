@@ -90,11 +90,10 @@ def test_descriptions_say_when_to_fire() -> None:
 
 
 def test_skills_only_reference_known_tools() -> None:
+    known = set(EXPECTED_CALLS) | FORBIDDEN | _registry().keys()
     referenced: set[str] = set()
     for skill in _skills():
-        referenced |= set(re.findall(r"`([a-z_]+)`", skill.body)) & (
-            set(EXPECTED_CALLS) | FORBIDDEN | _registry().keys()
-        )
+        referenced |= set(re.findall(r"`([a-z_]+)`", skill.body)) & known
     assert referenced - FORBIDDEN <= set(EXPECTED_CALLS), referenced - FORBIDDEN - set(EXPECTED_CALLS)
 
 
